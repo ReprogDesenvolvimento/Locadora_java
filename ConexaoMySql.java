@@ -15,7 +15,6 @@ public class ConexaoMySql {
 
     // (Requisito 12) Uso de 'public' para o método de conexão
     public Connection getConnection() {
-
         try {
             Class.forName(DRIVER);
             con = DriverManager.getConnection(URL + DATABASE, USER, PASSWORD);
