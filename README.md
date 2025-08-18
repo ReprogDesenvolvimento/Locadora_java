@@ -34,7 +34,34 @@ INSERT INTO filme (titulo, genero, ano_lancamento, status) VALUES
 ('Matrix', 'FICCAO_CIENTIFICA', 1999, 'DISPONIVEL'),
 ('A Origem', 'FICCAO_CIENTIFICA', 2010, 'ALUGADO');
 
+CREATE TABLE cliente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE,
+    telefone VARCHAR(20)
+);
 
+
+CREATE TABLE aluguel (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_filme INT,
+    id_cliente INT,
+    data_aluguel DATE NOT NULL,
+    data_devolucao DATE,
+    FOREIGN KEY (id_filme) REFERENCES filme(id),
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id)
+);
+
+
+INSERT INTO cliente (nome, email, telefone) VALUES
+('João Silva', 'joao.silva@example.com', '(11) 98765-4321'),
+('Maria Oliveira', 'maria.o@example.com', '(21) 91234-5678'),
+('Carlos Pereira', 'carlos.p@example.com', '(31) 99999-8888');
+
+
+INSERT INTO aluguel (id_filme, id_cliente, data_aluguel, data_devolucao) VALUES
+(2, 1, '2025-07-10', NULL), 
+(5, 2, '2025-07-15', NULL); 
 
 3.  **Configure a Conexão:**
     * No arquivo `ConexaoMySql.java`, verifique se o usuário e a senha do banco de dados estão corretos para a sua máquina.
